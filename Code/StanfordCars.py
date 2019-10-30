@@ -222,6 +222,40 @@ class GetStandfordCars:
 
         plt.show();
         
+    def show_select_images2(self, list_of_images):
+        '''
+        Function to plot image data on a grid of NxN
+        '''
+        #plt.rcParams['figure.figsize'] = [30, 30]
+
+        no_of_images = len(list_of_images)
+        
+        rows = no_of_images // 5 + int((no_of_images % 5) > 0)
+
+        image_size = (256, 256)
+
+        plt.figure(figsize=(rows*10,5*10))
+        
+        #fig, ax = plt.subplots(nrows=rows, ncols=5, gridspec_kw={'wspace':0, 'hspace':0},
+        #                   squeeze=True)
+        
+        img_no = 1
+        for file_no in list_of_images:
+            img = image.load_img(self.getPath(file_no), target_size=image_size)
+            plt.subplot(rows, 5, img_no)
+            plt.axis("off")
+            plt.imshow(img, aspect='auto')
+            #ax.set_title(self.bringup_ClassLabel(file_no))
+            #ax.set_xlim(0.0, 256);
+            #ax.set_ylim(256, 0.0);
+            #ax.grid(False)
+            #ax.set_xticks([])
+            #ax.set_yticks([])
+            img_no += 1
+
+        plt.subplots_adjust(hspace=0, wspace=0)
+        plt.show();
+        
     def show_1EachClass7x7(self, quarter = 1):
         '''
         Function to plot image data on a grid of NxN
